@@ -1,2 +1,8 @@
 .vscode
-.venv
+# .gitignore
+.venv/
+__pycache__/
+*.pyc
+.env
+app.db
+*.sqlite
