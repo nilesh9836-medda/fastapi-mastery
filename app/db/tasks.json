@@ -10,5 +10,11 @@
     "title": "Chapter 1",
     "description": null,
     "is_done": true
+  },
+  {
+    "id": 3,
+    "title": "Chapter 2",
+    "description": null,
+    "is_done": false
   }
 ]

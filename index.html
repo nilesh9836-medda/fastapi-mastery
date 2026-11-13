@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tasks</title>
+    <style>
+        body { font-family: sans-serif; max-width: 500px; margin: 40px auto;}
+        input { padding: 10px; width: 70%;}
+        button { padding: 10px;}
+        li { padding: 8px; border-bottom: 1px solid #ddd;}
+    </style>
+</head>
+<body>
+    <h1>My Tasks</h1>
+    <input id="titleInput" placeholder="Enter task title..." />
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+
+    <script>
+        const API = "http://127.0.0.1:8000/api/v1/tasks/";
+
+        // GET - send request to backend, get JSON back
+        async function loadTasks() {
+            const res = await fetch(API);
+            const tasks = await res.json(); // backend JSON -> JS array
+            const list = document.getElementById("taskList");
+            list.innerHTML = "";
+            tasks.forEach(t => {
+                const li = document.createElement("li");
+                li.textContent = (t.is_done? "DONE":"DUE") + t.title ;
+                list.appendChild(li);
+            });
+        }
+
+        // POST - send JSON to backend, backend saves to tasks.json
+        async function addTask() {
+            const title = document.getElementById("titleInput").value;
+            if (!title) return;
+            await fetch(API, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({title: title, describtion: "", is_done: false})
+            });
+            document.getElementById("titleInput").value = "";
+            loadTasks(); // reload list
+        }
+
+        loadTasks();
+    </script>
+</body>
+</html>
