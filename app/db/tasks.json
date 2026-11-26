@@ -1,11 +1,5 @@
 [
   {
-    "id": 1,
-    "title": "Learn FastAPI",
-    "description": null,
-    "is_done": false
-  },
-  {
     "id": 2,
     "title": "Chapter 1",
     "description": null,
@@ -14,6 +8,12 @@
   {
     "id": 3,
     "title": "Chapter 2",
+    "description": null,
+    "is_done": false
+  },
+  {
+    "id": 4,
+    "title": "Chapter 3 Task",
     "description": null,
     "is_done": false
   }
